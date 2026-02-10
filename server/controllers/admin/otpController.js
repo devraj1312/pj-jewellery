@@ -71,17 +71,6 @@ export const verifyOtp = async (req, res) => {
 
     // ✅ Generate tokens
     const accessToken = generateAccessToken({ id: admin.admin_id, role: admin.admin_role });
-    const refreshToken = generateRefreshToken({ id: admin.admin_id, role: admin.admin_role });
-
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
-    await saveRefreshToken(admin.admin_id, refreshToken, expiresAt);
-
-    // ✅ Set refresh token cookie
-    res.cookie("adminRefreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
-    });
 
     // ✅ Return response (similar to owner’s structure)
     res.json({
