@@ -1,0 +1,49 @@
+@use './variables' as *;
+@use 'sass:color';
+
+.hotels-page {
+  h2 {
+    color: $color-primary;
+    margin-bottom: 20px;
+  }
+
+  table {
+    th {
+      background-color: $color-primary;
+      color: $color-surface;
+    }
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  // ==========================
+  // 🔹 View Button Styling
+  // ==========================
+  .btn-warning {
+    background-color: $color-accent;
+    border: none;
+    color: $color-surface;
+    font-weight: 500;
+    padding: 6px 24px;
+    border-radius: 8px;
+    font-size: 1.2rem;;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: color.scale($color-accent, $lightness: -10%);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px color.change($color-accent, $alpha: 0.3);
+    }
+  }
+}
